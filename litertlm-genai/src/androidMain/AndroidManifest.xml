@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The first request downloads the model. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <!-- Generation.getClient() takes no Context, as in ML Kit: this gives the library the application's. -->
+        <provider
+            android:name="io.github.johnrocky.litertlm.genai.internal.ContextProvider"
+            android:authorities="${applicationId}.litertlm-genai"
+            android:exported="false" />
+    </application>
+</manifest>

@@ -1,0 +1,52 @@
+# litert-lm-kmp
+
+> Run LLMs on the phone from Kotlin Multiplatform: one API in commonMain for Android, iOS and the JVM, on Google's LiteRT-LM. Summarization, proofreading, rewriting, image description and chat on a LiteRT-LM model, and with the artifact `litertlm-genai-nano` also on Gemini Nano through ML Kit GenAI on Android phones that have it. No API key. An independent project, not a Google product.
+
+Pin `io.github.john-rocky.litertlm:litertlm-genai:0.1.0`. It runs LiteRT-LM 0.19.0 and needs Kotlin 2.3.0 or newer and `minSdk` 24. For Gemini Nano on Android, also add `io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.0` to `androidMain`, with `minSdk` 26: the code stays the same. On iOS, also add the Swift package `https://github.com/john-rocky/litert-lm-kmp`, product `CLiteRTLM`. On 2026-11-05 an iPhone 18 Pro summarized the 278-word Gettysburg Address in 0.9 s and a Pixel 8a in 5.2 s, with Gemma 4 E2B on the GPU and the model already loaded.
+
+```kotlin
+// commonMain. The first request downloads Gemma 4 E2B (2.6 GB) unless Gemini Nano answers. Keep the screen on until it ends.
+val summarizer = Summarization.getClient(SummarizerOptions.builder().build())
+val summary = summarizer.runInference(SummarizationRequest.builder(article).build()).summary
+```
+
+## Start here
+
+- [README](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/README.md): install, tasks, chat, who answers, choosing the model, the lower level, Compose Multiplatform, failures.
+- [AGENTS.md](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/AGENTS.md): for coding agents. Task → API → file, and the rules that fail on a real device.
+- [docs/tested-devices.md](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/docs/tested-devices.md): each phone, OS, runtime version, provider and backend, what ran, and how to run the checks yourself.
+- [docs/koog.md](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/docs/koog.md): a small Koog `LLMClient` over `Engine`.
+- [docs/ios-tests.md](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/docs/ios-tests.md): the runtime in a Kotlin test binary on iOS.
+- [Package.swift](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/Package.swift): the product `CLiteRTLM`, Google's release of the runtime with its checksum.
+
+## API, tasks (litertlm-genai)
+
+- [summarization/Summarization.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/summarization/Summarization.kt): `Summarization.getClient`, `SummarizerOptions`, `SummarizationRequest`. Proofreading, rewriting and image description have the same shape, in the directories next to it.
+- [prompt/Generation.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/prompt/Generation.kt): `Generation.getClient`, `GenerativeModel`, `generateContent`, `generateContentStream`.
+- [common/ModelProvider.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/common/ModelProvider.kt): `ModelProvider.Auto`, `GeminiNano`, `LiteRtLm`, and `LocalModel`.
+- [common/GenAiException.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/common/GenAiException.kt): the error codes.
+
+## API, Gemini Nano (litertlm-genai-nano)
+
+- [README, Gemini Nano](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/README.md): one dependency in `androidMain`, no API of its own. `ModelProvider` chooses.
+
+## API, lower level (litertlm-kmp)
+
+- [Engine.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Engine.kt): `Engine`, `initialize`, `createConversation`.
+- [Conversation.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Conversation.kt): `sendMessage`, `stream`, `cancelProcess`.
+- [Config.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Config.kt): `EngineConfig`, `ConversationConfig`, `Backend`.
+- [Message.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Message.kt): `Message`, `Contents`, `Content`.
+- [Tool.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Tool.kt): `tool`, `OpenApiTool`.
+- [EmbeddingEngine.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/EmbeddingEngine.kt): `EmbeddingEngine`, `computeEmbedding`.
+- [LiteRtLmException.kt](https://raw.githubusercontent.com/john-rocky/litert-lm-kmp/main/litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/LiteRtLmException.kt): the failure types.
+
+## Examples
+
+- [sample-shared](https://github.com/john-rocky/litert-lm-kmp/tree/main/sample-shared), [sample-android](https://github.com/john-rocky/litert-lm-kmp/tree/main/sample-android), [sample-ios](https://github.com/john-rocky/litert-lm-kmp/tree/main/sample-ios): one Compose screen with a chat and every task, with the provider and backend to choose.
+
+## Related
+
+- [swift-litert-lm](https://github.com/john-rocky/swift-litert-lm): LiteRT-LM from Swift, with Apple's Foundation Models API.
+- [hfmodels-android](https://github.com/john-rocky/hfmodels-android): Hugging Face models in an Android app.
+- [hf-to-litertlm](https://github.com/john-rocky/hf-to-litertlm): convert a Hugging Face LLM or VLM to `.litertlm`.
+- [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM): the upstream runtime.

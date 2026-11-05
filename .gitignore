@@ -1,0 +1,30 @@
+# Gradle and Kotlin
+.gradle/
+.kotlin/
+build/
+local.properties
+kotlin-js-store/
+
+# Android
+*.apk
+*.aab
+captures/
+
+# Xcode
+xcuserdata/
+DerivedData/
+*.xcuserstate
+.swiftpm/
+.build/
+sample-ios/**/Frameworks/
+
+# Native runtime and models are fetched, never committed
+*.xcframework/
+*.xcframework.zip
+*.litertlm
+*.task
+
+# Machine files
+.DS_Store
+.idea/
+*.iml

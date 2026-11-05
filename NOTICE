@@ -1,0 +1,12 @@
+litert-lm-kmp
+Copyright 2026 the litert-lm-kmp authors.
+
+litertlm-kmp/src/nativeInterop/cinterop/headers/
+    The C API headers of LiteRT-LM v0.19.0 (c/*.h), copied unchanged from
+    https://github.com/google-ai-edge/LiteRT-LM. Copyright The ODML Authors.
+    Licensed under the Apache License, Version 2.0.
+
+sample-shared/src/commonMain/kotlin/io/github/johnrocky/litertlm/sample/CatImage.kt
+    A reduced copy of "Siamese-Cat Andreas-LischkaPixabay.jpg" by webandi, from
+    https://commons.wikimedia.org/wiki/File:Siamese-Cat_Andreas-LischkaPixabay.jpg
+    Released under CC0 1.0.

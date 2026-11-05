@@ -1,0 +1,38 @@
+# Generates Sample.xcodeproj: xcodegen generate --spec project.yml
+name: Sample
+options:
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+packages:
+  litertlm-kmp:
+    path: ..
+targets:
+  Sample:
+    type: application
+    platform: iOS
+    sources:
+      - Sample
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.johnrocky.litertlm.sample
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Sample/Info.plist
+        SWIFT_VERSION: "5.0"
+        CODE_SIGN_STYLE: Automatic
+        # The script phase below runs Gradle, which writes outside the sandbox.
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        ENABLE_BITCODE: NO
+        FRAMEWORK_SEARCH_PATHS: $(inherited) $(SRCROOT)/../sample-shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)
+        OTHER_LDFLAGS: $(inherited) -framework SampleShared
+    dependencies:
+      - package: litertlm-kmp
+        product: CLiteRTLM
+    preBuildScripts:
+      - name: Build the Kotlin framework
+        basedOnDependencyAnalysis: false
+        script: |
+          set -e
+          cd "$SRCROOT/.."
+          export JAVA_HOME="${JAVA_HOME:-$(/usr/libexec/java_home -v 17+)}"
+          ./gradlew :sample-shared:embedAndSignAppleFrameworkForXcode

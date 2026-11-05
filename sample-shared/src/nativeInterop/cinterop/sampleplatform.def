@@ -1,0 +1,5 @@
+language = C
+---
+#include <os/proc.h>
+
+static inline size_t sample_available_memory(void) { return os_proc_available_memory(); }
