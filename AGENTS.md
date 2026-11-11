@@ -1,6 +1,6 @@
 # AGENTS.md: for coding agents putting an LLM into a Kotlin Multiplatform app
 
-Read this first if someone asked you to summarize, rewrite, describe an image or chat on the device from Kotlin, on Android, iOS or the JVM. This file routes you to the right API and the file that shows it. The README has the code.
+Read this first if someone asked you to summarize, rewrite, describe an image or chat on the device from Kotlin, on Android, iOS or the JVM. This file routes you to the right API and the file that shows it. The pages in `docs/` have the code.
 
 **What this is.** A Kotlin Multiplatform library over Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) runtime, in three artifacts:
 
@@ -14,19 +14,19 @@ Independent project, not a Google product. No API key anywhere.
 
 | Task | API | Where |
 |---|---|---|
-| Summarize, proofread, rewrite or describe an image, on any phone | `Summarization.getClient(options)`, `Proofreading`, `Rewriting`, `ImageDescription`, then `runInference(request)` | README "Tasks", [`summarization/Summarization.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/summarization/Summarization.kt) |
-| A chat that keeps its turns | `Generation.getClient()`, `generateContentStream(GenerateContentRequest.Builder(turns).build())` | README "Chat", [`prompt/Generation.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/prompt/Generation.kt) |
-| Text as it is generated | `runInference(request) { piece -> }`, `generateContentStream`, `Conversation.stream` | README "Tasks", "The lower level" |
+| Summarize, proofread, rewrite or describe an image, on any phone | `Summarization.getClient(options)`, `Proofreading`, `Rewriting`, `ImageDescription`, then `runInference(request)` | `docs/tasks.md`, [`summarization/Summarization.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/summarization/Summarization.kt) |
+| A chat that keeps its turns | `Generation.getClient()`, `generateContentStream(GenerateContentRequest.Builder(turns).build())` | `docs/tasks.md` "Chat", [`prompt/Generation.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/prompt/Generation.kt) |
+| Text as it is generated | `runInference(request) { piece -> }`, `generateContentStream`, `Conversation.stream` | `docs/tasks.md`, `docs/lower-level.md` |
 | Use Gemini Nano on Android | `androidMain.dependencies { implementation("io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.0") }`, and nothing else | README "Gemini Nano" |
-| Choose Gemini Nano, the local model, or the automatic rule | `ModelProvider.Auto()`, `ModelProvider.GeminiNano`, `ModelProvider.LiteRtLm(model)`, the last argument of `getClient` | README "Who answers", [`common/ModelProvider.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/common/ModelProvider.kt) |
-| Choose the model | `LocalModel.huggingFace(repo, file)`, `LocalModel.file(path)` | README "Choose the model" |
-| A download with progress | `checkFeatureStatus()`, `downloadFeature(callback)` | README "Choose the model", [`internal/Download.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/internal/Download.kt) |
-| Tool calls | `ConversationConfig(tools = listOf(tool(...)))`, `reply.toolCalls`, `Message.tool(...)` | README "The lower level", [`Tool.kt`](litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Tool.kt) |
-| An image at the lower level | `EngineConfig(visionBackend = ...)`, `Contents.of(Content.ImageBytes(bytes), Content.Text(question))` | README "The lower level", [`Message.kt`](litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Message.kt) |
-| Embeddings | `EmbeddingEngine(EmbeddingEngineConfig(path))`, `computeEmbedding` | README "The lower level", [`EmbeddingEngine.kt`](litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/EmbeddingEngine.kt) |
-| A Compose Multiplatform screen | `SummaryButton` | README "Compose Multiplatform" |
+| Choose Gemini Nano, the local model, or the automatic rule | `ModelProvider.Auto()`, `ModelProvider.GeminiNano`, `ModelProvider.LiteRtLm(model)`, the last argument of `getClient` | `docs/who-answers.md`, [`common/ModelProvider.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/common/ModelProvider.kt) |
+| Choose the model | `LocalModel.huggingFace(repo, file)`, `LocalModel.file(path)` | `docs/choose-the-model.md` |
+| A download with progress | `checkFeatureStatus()`, `downloadFeature(callback)` | `docs/choose-the-model.md`, [`internal/Download.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/internal/Download.kt) |
+| Tool calls | `ConversationConfig(tools = listOf(tool(...)))`, `reply.toolCalls`, `Message.tool(...)` | `docs/lower-level.md`, [`Tool.kt`](litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Tool.kt) |
+| An image at the lower level | `EngineConfig(visionBackend = ...)`, `Contents.of(Content.ImageBytes(bytes), Content.Text(question))` | `docs/lower-level.md`, [`Message.kt`](litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/Message.kt) |
+| Embeddings | `EmbeddingEngine(EmbeddingEngineConfig(path))`, `computeEmbedding` | `docs/lower-level.md`, [`EmbeddingEngine.kt`](litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/EmbeddingEngine.kt) |
+| A Compose Multiplatform screen | `SummaryButton` | `docs/compose-multiplatform.md` |
 | A Koog agent on the device | A small `LLMClient` over `Engine` | [`docs/koog.md`](docs/koog.md) |
-| Handle a failure | `LiteRtLmException`, `GenAiException.errorCode` | README "Failures", [`LiteRtLmException.kt`](litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/LiteRtLmException.kt), [`common/GenAiException.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/common/GenAiException.kt) |
+| Handle a failure | `LiteRtLmException`, `GenAiException.errorCode` | `docs/failures.md`, [`LiteRtLmException.kt`](litertlm-kmp/src/commonMain/kotlin/io/github/johnrocky/litertlm/LiteRtLmException.kt), [`common/GenAiException.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/common/GenAiException.kt) |
 | A complete app to copy | A chat and every task, with the provider and backend to choose | [`sample-shared`](sample-shared), [`sample-android`](sample-android), [`sample-ios`](sample-ios) |
 | Run the library's checks on a phone | `--deviceCheck` | [`docs/tested-devices.md`](docs/tested-devices.md) |
 

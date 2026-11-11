@@ -66,7 +66,7 @@ An app without the Swift package is a separate check, because the sample has the
 
 ## Numbers
 
-A three-bullet summary of the 278-word Gettysburg Address, with the model loaded:
+A three-bullet summary of the Gettysburg Address, with the model loaded:
 
 | Device | Provider, backend | Seconds |
 |---|---|---|

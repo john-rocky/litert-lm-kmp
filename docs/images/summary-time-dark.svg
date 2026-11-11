@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 338" width="860" height="338" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title id="t">The same summary call on each device</title>
+<desc id="d">The same summary call on each device. Seconds for a three-bullet summary of the Gettysburg Address, with the model loaded, 2026-11-05. Pixel 11 Pro, Gemini Nano: 1.0 s. Pixel 11 Pro, LiteRT-LM, GPU: 4.2 s. Pixel 11 Pro, LiteRT-LM, CPU: 10.9 s. Pixel 8a, LiteRT-LM, GPU: 5.2 s. Pixel 8a, LiteRT-LM, CPU: 9.3 s. Galaxy S26, Gemini Nano: 1.5 s. iPhone 18 Pro, LiteRT-LM, GPU (Metal): 0.9 s. iPhone 18 Pro, LiteRT-LM, CPU: 2.7 s.</desc>
+<text x="0" y="28" font-size="20" font-weight="600" fill="#f0efec">The same summary call on each device</text>
+<text x="0" y="52" font-size="14" font-weight="400" fill="#c3c2b7">Seconds for a three-bullet summary of the Gettysburg Address, with the model loaded, 2026-11-05.</text>
+<rect x="0" y="66" width="14" height="14" rx="4" fill="#3987e5"/>
+<text x="20" y="78" font-size="14" font-weight="400" fill="#c3c2b7">Gemma 4 E2B on LiteRT-LM</text>
+<rect x="230" y="66" width="14" height="14" rx="4" fill="#d95926"/>
+<text x="250" y="78" font-size="14" font-weight="400" fill="#c3c2b7">Gemini Nano</text>
+<text x="0" y="123" font-size="14" font-weight="400" fill="#f0efec">Pixel 11 Pro, Gemini Nano</text>
+<rect x="280" y="110" width="47.156" height="16" rx="4" fill="#d95926"/>
+<text x="335.156" y="123" font-size="14" font-weight="600" fill="#f0efec">1.0 s</text>
+<text x="0" y="151" font-size="14" font-weight="400" fill="#f0efec">Pixel 11 Pro, GPU</text>
+<rect x="280" y="138" width="198.055" height="16" rx="4" fill="#3987e5"/>
+<text x="486.055" y="151" font-size="14" font-weight="600" fill="#f0efec">4.2 s</text>
+<text x="0" y="179" font-size="14" font-weight="400" fill="#f0efec">Pixel 11 Pro, CPU</text>
+<rect x="280" y="166" width="514" height="16" rx="4" fill="#3987e5"/>
+<text x="802" y="179" font-size="14" font-weight="600" fill="#f0efec">10.9 s</text>
+<text x="0" y="207" font-size="14" font-weight="400" fill="#f0efec">Pixel 8a, GPU</text>
+<rect x="280" y="194" width="245.211" height="16" rx="4" fill="#3987e5"/>
+<text x="533.211" y="207" font-size="14" font-weight="600" fill="#f0efec">5.2 s</text>
+<text x="0" y="235" font-size="14" font-weight="400" fill="#f0efec">Pixel 8a, CPU</text>
+<rect x="280" y="222" width="438.55" height="16" rx="4" fill="#3987e5"/>
+<text x="726.55" y="235" font-size="14" font-weight="600" fill="#f0efec">9.3 s</text>
+<text x="0" y="263" font-size="14" font-weight="400" fill="#f0efec">Galaxy S26, Gemini Nano</text>
+<rect x="280" y="250" width="70.7339" height="16" rx="4" fill="#d95926"/>
+<text x="358.734" y="263" font-size="14" font-weight="600" fill="#f0efec">1.5 s</text>
+<text x="0" y="291" font-size="14" font-weight="400" fill="#f0efec">iPhone 18 Pro, GPU (Metal)</text>
+<rect x="280" y="278" width="42.4404" height="16" rx="4" fill="#3987e5"/>
+<text x="330.44" y="291" font-size="14" font-weight="600" fill="#f0efec">0.9 s</text>
+<text x="0" y="319" font-size="14" font-weight="400" fill="#f0efec">iPhone 18 Pro, CPU</text>
+<rect x="280" y="306" width="127.321" height="16" rx="4" fill="#3987e5"/>
+<text x="415.321" y="319" font-size="14" font-weight="600" fill="#f0efec">2.7 s</text>
+</svg>
