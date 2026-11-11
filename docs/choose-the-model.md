@@ -32,7 +32,7 @@ suspend fun fetch(summarizer: Summarizer, show: (String) -> Unit) {
 
 Keep the screen on until the download ends. On a Pixel 8a with Android 16, the download failed 14 s after the screen went off, because Android stopped the app's network. The failure says so, and the next request goes on from where it stopped. On Android, add `FLAG_KEEP_SCREEN_ON` to the Activity's window. On iOS, set `UIApplication.shared.isIdleTimerDisabled`. The sample does both. What a download does on iOS with the screen off has not been measured.
 
-The backend is the CPU unless you say otherwise. The GPU is Metal on iOS, OpenCL on Android and WebGPU on the JVM on a Mac. A three-bullet summary of the Gettysburg Address, with the model loaded:
+The backend is the CPU unless you say otherwise. The GPU is Metal on iOS, OpenCL on Android and WebGPU on the JVM on a Mac. A three-bullet summary of the Gettysburg Address, with the model loaded, on LiteRT-LM 0.19.0 on 2026-11-05:
 
 | Phone | GPU | CPU |
 |---|---|---|

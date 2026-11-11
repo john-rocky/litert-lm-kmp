@@ -29,7 +29,7 @@ suspend fun summarize(article: String): String {
 
 In a project from the [KMP wizard](https://kmp.jetbrains.com), that is all the setup on Android and the JVM. You don't pass an API key or a `Context`. iOS adds one Swift package ([iOS](#ios)). The first request downloads Gemma 4 E2B (2.6 GB, Apache-2.0). Keep the screen on until it finishes: on a Pixel 8a the download failed 14 s after the screen went off.
 
-By default the model runs on the CPU, where the same summary took 2.7 s on the iPhone and 9.3 s on the Pixel 8a. To put it on the GPU, pass [`Backend.GPU()`](docs/who-answers.md). In an app, keep a client open while its screen is, because a client per request loads the model each time.
+By default the model runs on the CPU, where the same summary took 2.7 s on the iPhone and 9.3 s on the Pixel 8a. To put it on the GPU, pass [`Backend.GPU()`](docs/who-answers.md). In an app, keep one client open while the screen that uses it is open, because a new client for each request loads the model again.
 
 The task APIs use the same class, method and constant names as ML Kit GenAI. To port ML Kit code, change the import and call the `suspend` functions instead of waiting on futures. You can also use your own `.litertlm` file, from a public Hugging Face repository or from disk.
 
@@ -97,7 +97,7 @@ Tool calls and embeddings use a lower-level API: `Engine`, `Conversation` and `E
 
 ## Tested on
 
-I ran the checks in `sample-shared` on each device with LiteRT-LM 0.19.0, on 2026-11-05. None failed. Up to 5 were skipped on a device, for example the download checks on a phone with no network.
+I ran the checks in `sample-shared` on each device with LiteRT-LM 0.19.0, on 2026-11-05. None failed. Up to 5 were skipped on a device, for example the download checks on a phone with no network. On 2026-11-11 I ran the LiteRT-LM checks again with 0.19.1 on the Pixel 11 Pro, the iPhone 18 Pro and the Mac, and none failed. Everything else on this page and in `docs/` was measured with 0.19.0.
 
 | Device | OS | Runs |
 |---|---|---|
