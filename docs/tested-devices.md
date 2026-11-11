@@ -2,11 +2,11 @@
 
 What ran on real devices, and what came back. Numbers belong to the device, its OS build, the runtime version and the date, and other phones will differ.
 
-Every row used LiteRT-LM 0.19.0, Gemma 4 E2B (`gemma-4-E2B-it.litertlm`, 2,588,147,712 bytes) and EmbeddingGemma (`embeddinggemma-2-text-270m.litertlm`, 164,626,432 bytes). The runs of Gemini Nano also used `litertlm-genai-nano`, with ML Kit `genai-summarization`, `genai-proofreading`, `genai-rewriting` and `genai-image-description` 1.0.0-beta1, and `genai-prompt` and `genai-common` 1.0.0-beta5. The Android phones' bootloaders were locked, and no API key was set anywhere.
+The rows of 2026-11-05 used LiteRT-LM 0.19.0, and the rows of 2026-11-11 used 0.19.1. Every row used Gemma 4 E2B (`gemma-4-E2B-it.litertlm`, 2,588,147,712 bytes) and EmbeddingGemma (`embeddinggemma-2-text-270m.litertlm`, 164,626,432 bytes). The runs of Gemini Nano also used `litertlm-genai-nano`, with ML Kit `genai-summarization`, `genai-proofreading`, `genai-rewriting` and `genai-image-description` 1.0.0-beta1, and `genai-prompt` and `genai-common` 1.0.0-beta5. The Android phones' bootloaders were locked, and no API key was set anywhere.
 
 ## Results
 
-Counts are of the checks in [`DeviceCheck`](../sample-shared/src/commonMain/kotlin/io/github/johnrocky/litertlm/sample/DeviceCheck.kt), on 2026-11-05, on the code of this release.
+The counts in this table are of the checks in [`DeviceCheck`](../sample-shared/src/commonMain/kotlin/io/github/johnrocky/litertlm/sample/DeviceCheck.kt), on 2026-11-05, on the code of version 0.1.0 of this library.
 
 | Device | SoC, GPU | OS | Provider, backend | Build | Passed | Failed | Skipped |
 |---|---|---|---|---|---|---|---|
@@ -33,6 +33,22 @@ The iPhone skips the one check that goes to the background, because iOS has no G
 On the Pixel 11 Pro, the check that fills the memory ran in a launch of its own on each backend, and on the GPU so did the check with a text-only model. Android 17 killed a process that stayed over 8 GiB, and closing that model left almost no memory for the next check. So on that phone, one launch of the command below can be killed before it ends. `--es cases a,b,c` runs the checks you name.
 
 One check can fail on the Pixel 11 Pro when it is repeated. `t_sum_stream_3` asks that the streamed pieces of a three-bullet summary add up to the result. On `nano-v4-full` the pieces lacked a word, an apostrophe or a line break in 8 of 75 runs, in debug and release builds. In the one run traced, ML Kit's callback had already lost the line break. The result was whole in all of them. The one-bullet `t_sum_stream_1` did not fail in 71 runs. Apps should take the text from the result.
+
+## LiteRT-LM 0.19.1
+
+On 2026-11-11 the same checks ran again with LiteRT-LM 0.19.1: on the Pixel 11 Pro and the iPhone 18 Pro in debug builds, and on the Mac. The launches were the same as on 2026-11-05, and so are the counts. The other rows above were not run again: the release builds, Gemini Nano, the Pixel 8a and the Galaxy S26.
+
+| Device | SoC, GPU | OS | Provider, backend | Build | Passed | Failed | Skipped |
+|---|---|---|---|---|---|---|---|
+| Pixel 11 Pro | Tensor G6, PowerVR | Android 17, CD1A.260905.001.B1 | LiteRT-LM, GPU | debug, three launches | 51 | 0 | 5 |
+| Pixel 11 Pro | | | LiteRT-LM, CPU | debug, two launches | 51 | 0 | 5 |
+| iPhone 18 Pro (iPhone19,2) | | iOS 27.2, 24B5099f | LiteRT-LM, GPU (Metal) | debug | 56 | 0 | 1 |
+| iPhone 18 Pro | | | LiteRT-LM, CPU | debug | 56 | 0 | 1 |
+| Mac | Apple M4 Max | macOS 27.0, JVM | LiteRT-LM, CPU | | 55 | 0 | 2 |
+
+The skipped checks are the ones explained under the first table. The Pixel 11 Pro had no network on 2026-11-11 either.
+
+Only this table is from LiteRT-LM 0.19.1. Everything else in this file is from 0.19.0 and has not been updated.
 
 ## What the checks cover
 
@@ -64,7 +80,7 @@ A three-bullet summary of the 278-word Gettysburg Address, with the model loaded
 | iPhone 18 Pro | LiteRT-LM, CPU | 2.7 |
 | Mac, JVM | LiteRT-LM, CPU | 3.5 |
 
-These come from the debug runs in the table above. On the iPhone 18 Pro, in four launches of each, taken in turn, a release and a debug build both took 0.9 s on the GPU. A release build started right after the two debug runs took 1.4 s on the GPU and 3.8 s on the CPU.
+These come from the debug runs of 2026-11-05 in the first table. On the iPhone 18 Pro, in four launches of each, taken in turn, a release and a debug build both took 0.9 s on the GPU. A release build started right after the two debug runs took 1.4 s on the GPU and 3.8 s on the CPU.
 
 The first load, with no cache yet:
 

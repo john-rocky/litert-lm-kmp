@@ -73,7 +73,7 @@ fun simulatorDevice(): String {
 kotlin {
     explicitApi()
 
-    // litertlm-jvm 0.19.0 is Java 21 bytecode: anything older cannot load it.
+    // litertlm-jvm 0.19.1 is Java 21 bytecode: anything older cannot load it.
     jvmToolchain(21)
     jvm()
 

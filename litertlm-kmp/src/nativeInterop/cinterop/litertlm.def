@@ -7,7 +7,7 @@ excludedFunctions = litertlm_kmp_runtime
 nonStrictEnums = LiteRtLmStatusCode
 
 # No linkerOpts on purpose: linker options in a .def file reach every consumer's link, and the framework's location is
-# the app's business. The headers are copied from LiteRT-LM v0.19.0 c/ (see NOTICE).
+# the app's business. The headers are copied from LiteRT-LM v0.19.1 c/ (see NOTICE).
 ---
 #include <dlfcn.h>
 #include <os/proc.h>
