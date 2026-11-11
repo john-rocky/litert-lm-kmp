@@ -1,6 +1,6 @@
 # litert-lm-kmp
 
-Run LLMs on the phone from Kotlin Multiplatform: one API in `commonMain` for Android, iOS and the JVM, on Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) 0.19.1. Measured on LiteRT-LM 0.19.0 with Gemma 4 E2B loaded on the GPU: an iPhone 18 Pro summarized the Gettysburg Address in 0.9 s and a Pixel 8a in 5.2 s. Android phones with Gemini Nano can run the same call on Nano. A Galaxy S26 took 1.5 s.
+Run LLMs on the phone from Kotlin Multiplatform: one API in `commonMain` for Android, iOS and the JVM, on Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) 0.19.1. Measured on 2026-11-05 with LiteRT-LM 0.19.0 and Gemma 4 E2B loaded on the GPU: an iPhone 18 Pro summarized the Gettysburg Address in 0.9 s and a Pixel 8a in 5.2 s. Android phones with Gemini Nano can run the same call on Nano. A Galaxy S26 took 1.5 s.
 
 <p align="center">
 <picture>
