@@ -1,6 +1,6 @@
 # Install
 
-The one dependency line, `implementation("io.github.john-rocky.litertlm:litertlm-genai:0.1.0")`, is all of it, and it brings the lower level with it. For that level alone, use `io.github.john-rocky.litertlm:litertlm-kmp:0.1.0` instead. The Maven group has a hyphen (`john-rocky`) and the Kotlin package does not (`io.github.johnrocky.litertlm`).
+The one dependency line, `implementation("io.github.john-rocky.litertlm:litertlm-genai:0.1.1")`, is all of it, and it brings the lower level with it. For that level alone, use `io.github.john-rocky.litertlm:litertlm-kmp:0.1.1` instead. The Maven group has a hyphen (`john-rocky`) and the Kotlin package does not (`io.github.johnrocky.litertlm`).
 
 In a project from the [KMP wizard](https://kmp.jetbrains.com), the line goes in `commonMain.dependencies` in `shared/build.gradle.kts`. `androidApp` then calls your functions in `shared` and does not see the library's types: importing one there fails with `Unresolved reference 'io'`. To use them in `androidApp`, write `api` in place of `implementation`.
 
@@ -37,7 +37,7 @@ To use Gemini Nano on Android phones that have it, add one dependency, in the sa
 
 ```kotlin
 androidMain.dependencies {
-    implementation("io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.0")
+    implementation("io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.1")
 }
 ```
 

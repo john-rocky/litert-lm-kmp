@@ -2,7 +2,7 @@
 
 > Run LLMs on the phone from Kotlin Multiplatform: one API in commonMain for Android, iOS and the JVM, on Google's LiteRT-LM. Summarization, proofreading, rewriting, image description and chat on a LiteRT-LM model, and with the artifact `litertlm-genai-nano` also on Gemini Nano through ML Kit GenAI on Android phones that have it. No API key. An independent project, not a Google product.
 
-Pin `io.github.john-rocky.litertlm:litertlm-genai:0.1.0`. It runs LiteRT-LM 0.19.0 and needs Kotlin 2.3.0 or newer and `minSdk` 24. For Gemini Nano on Android, also add `io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.0` to `androidMain`, with `minSdk` 26: the code stays the same. On iOS, also add the Swift package `https://github.com/john-rocky/litert-lm-kmp`, product `CLiteRTLM`. On 2026-11-05 an iPhone 18 Pro summarized the Gettysburg Address in 0.9 s and a Pixel 8a in 5.2 s, with Gemma 4 E2B on the GPU and the model already loaded.
+Pin `io.github.john-rocky.litertlm:litertlm-genai:0.1.1`. It runs LiteRT-LM 0.19.1 and needs Kotlin 2.3.0 or newer and `minSdk` 24. For Gemini Nano on Android, also add `io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.1` to `androidMain`, with `minSdk` 26: the code stays the same. On iOS, also add the Swift package `https://github.com/john-rocky/litert-lm-kmp`, product `CLiteRTLM`. On 2026-11-05, on LiteRT-LM 0.19.0, an iPhone 18 Pro summarized the Gettysburg Address in 0.9 s and a Pixel 8a in 5.2 s, with Gemma 4 E2B on the GPU and the model already loaded.
 
 ```kotlin
 // commonMain. The first request downloads Gemma 4 E2B (2.6 GB) unless Gemini Nano answers. Keep the screen on until it ends.

@@ -4,9 +4,9 @@ Read this first if someone asked you to summarize, rewrite, describe an image or
 
 **What this is.** A Kotlin Multiplatform library over Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) runtime, in three artifacts:
 
-- `io.github.john-rocky.litertlm:litertlm-genai:0.1.0`: the tasks, with the class and method names of ML Kit GenAI, on a LiteRT-LM model. Start here.
-- `io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.0`: Android only, and only if the app wants Gemini Nano. With it in `androidMain`, the same calls use Gemini Nano through ML Kit GenAI on phones that have it. No code changes.
-- `io.github.john-rocky.litertlm:litertlm-kmp:0.1.0`: `Engine`, `Conversation`, `EmbeddingEngine`, with the names of Google's Kotlin API. `litertlm-genai` brings it along.
+- `io.github.john-rocky.litertlm:litertlm-genai:0.1.1`: the tasks, with the class and method names of ML Kit GenAI, on a LiteRT-LM model. Start here.
+- `io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.1`: Android only, and only if the app wants Gemini Nano. With it in `androidMain`, the same calls use Gemini Nano through ML Kit GenAI on phones that have it. No code changes.
+- `io.github.john-rocky.litertlm:litertlm-kmp:0.1.1`: `Engine`, `Conversation`, `EmbeddingEngine`, with the names of Google's Kotlin API. `litertlm-genai` brings it along.
 
 Independent project, not a Google product. No API key anywhere.
 
@@ -17,7 +17,7 @@ Independent project, not a Google product. No API key anywhere.
 | Summarize, proofread, rewrite or describe an image, on any phone | `Summarization.getClient(options)`, `Proofreading`, `Rewriting`, `ImageDescription`, then `runInference(request)` | `docs/tasks.md`, [`summarization/Summarization.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/summarization/Summarization.kt) |
 | A chat that keeps its turns | `Generation.getClient()`, `generateContentStream(GenerateContentRequest.Builder(turns).build())` | `docs/tasks.md` "Chat", [`prompt/Generation.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/prompt/Generation.kt) |
 | Text as it is generated | `runInference(request) { piece -> }`, `generateContentStream`, `Conversation.stream` | `docs/tasks.md`, `docs/lower-level.md` |
-| Use Gemini Nano on Android | `androidMain.dependencies { implementation("io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.0") }`, and nothing else | README "Gemini Nano" |
+| Use Gemini Nano on Android | `androidMain.dependencies { implementation("io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.1") }`, and nothing else | README "Gemini Nano" |
 | Choose Gemini Nano, the local model, or the automatic rule | `ModelProvider.Auto()`, `ModelProvider.GeminiNano`, `ModelProvider.LiteRtLm(model)`, the last argument of `getClient` | `docs/who-answers.md`, [`common/ModelProvider.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/common/ModelProvider.kt) |
 | Choose the model | `LocalModel.huggingFace(repo, file)`, `LocalModel.file(path)` | `docs/choose-the-model.md` |
 | A download with progress | `checkFeatureStatus()`, `downloadFeature(callback)` | `docs/choose-the-model.md`, [`internal/Download.kt`](litertlm-genai/src/commonMain/kotlin/io/github/johnrocky/litertlm/genai/internal/Download.kt) |

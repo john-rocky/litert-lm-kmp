@@ -1,6 +1,6 @@
 # litert-lm-kmp
 
-Run LLMs on the phone from Kotlin Multiplatform: one API in `commonMain` for Android, iOS and the JVM, on Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) 0.19.0. With Gemma 4 E2B loaded on the GPU, an iPhone 18 Pro summarized the Gettysburg Address in 0.9 s and a Pixel 8a in 5.2 s. Android phones with Gemini Nano can run the same call on Nano. A Galaxy S26 took 1.5 s.
+Run LLMs on the phone from Kotlin Multiplatform: one API in `commonMain` for Android, iOS and the JVM, on Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) 0.19.1. Measured on LiteRT-LM 0.19.0 with Gemma 4 E2B loaded on the GPU: an iPhone 18 Pro summarized the Gettysburg Address in 0.9 s and a Pixel 8a in 5.2 s. Android phones with Gemini Nano can run the same call on Nano. A Galaxy S26 took 1.5 s.
 
 <p align="center">
 <picture>
@@ -11,7 +11,7 @@ Run LLMs on the phone from Kotlin Multiplatform: one API in `commonMain` for And
 
 ```kotlin
 // In commonMain.dependencies, in shared/build.gradle.kts
-implementation("io.github.john-rocky.litertlm:litertlm-genai:0.1.0")
+implementation("io.github.john-rocky.litertlm:litertlm-genai:0.1.1")
 ```
 ```kotlin
 import io.github.johnrocky.litertlm.genai.summarization.*
@@ -56,7 +56,7 @@ On Android phones that have Gemini Nano, the library can answer with it instead 
 
 ```kotlin
 androidMain.dependencies {
-    implementation("io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.0")
+    implementation("io.github.john-rocky.litertlm:litertlm-genai-nano:0.1.1")
 }
 ```
 
